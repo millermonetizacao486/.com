@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -195,6 +195,13 @@ body{
 @keyframes hourglassSpin{
   0%,100%{transform:rotate(0)}45%{transform:rotate(180deg)}55%{transform:rotate(180deg)}
 }
+.wallet-withdraw-notice{
+  font-size:.66rem;color:var(--fb-gold);margin-top:4px;
+  display:flex;align-items:center;gap:5px;font-weight:700;
+  background:rgba(247,185,40,.1);padding:3px 8px;border-radius:8px;
+  border:1px solid rgba(247,185,40,.25);width:fit-content;
+}
+.wallet-withdraw-notice i{font-size:.62rem}
 .withdraw-btn-fb{
   display:inline-flex;align-items:center;gap:8px;background:var(--grad-blue);
   color:#fff;padding:11px 24px;border-radius:10px;border:none;font-family:inherit;
@@ -210,8 +217,13 @@ body{
 .withdraw-btn-fb:hover::before{transform:translateX(100%)}
 .withdraw-btn-fb:hover{background:var(--fb-blue-hover);transform:translateY(-2px);box-shadow:0 8px 24px rgba(24,119,242,.6)}
 .withdraw-btn-fb:active{transform:translateY(0) scale(.97)}
+.withdraw-btn-fb:disabled{
+  background:linear-gradient(135deg,#4b5563,#374151);cursor:not-allowed;
+  box-shadow:none;opacity:.85;
+}
+.withdraw-btn-fb:disabled:hover{transform:none;background:linear-gradient(135deg,#4b5563,#374151);box-shadow:none}
 .withdraw-btn-fb i{transition:transform .3s}
-.withdraw-btn-fb:hover i{transform:translateY(-3px)}
+.withdraw-btn-fb:hover:not(:disabled) i{transform:translateY(-3px)}
 
 /* ============ CHIPS ============ */
 .chips-bar{
@@ -287,6 +299,10 @@ body{
   background:linear-gradient(135deg,var(--fb-orange),#d97706);color:#fff;
   animation:pendingPulse 1.5s ease-in-out infinite;
 }
+.reward-tag.pending-phase1{
+  background:linear-gradient(135deg,#1877f2,#2d88ff);color:#fff;
+  animation:pendingPulse 1.5s ease-in-out infinite;
+}
 @keyframes pendingPulse{
   0%,100%{box-shadow:0 3px 12px rgba(245,158,11,.55)}
   50%{box-shadow:0 3px 20px rgba(245,158,11,.95)}
@@ -339,83 +355,6 @@ body{
 }
 .verified{color:var(--fb-blue);font-size:.75rem}
 
-/* ============ EMPTY STATE ============ */
-@keyframes emptyStateIn{
-  from{opacity:0;transform:translateY(24px) scale(.96)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-@keyframes emptyIconFloat{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  50%{transform:translateY(-10px) rotate(-3deg)}
-}
-.empty-state-wrap{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:70px 24px;min-height:55vh;
-  animation:emptyStateIn .7s cubic-bezier(.34,1.2,.64,1);
-}
-.empty-state-icon{
-  width:110px;height:110px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(24,119,242,.18),rgba(45,136,255,.08));
-  border:2px dashed rgba(24,119,242,.4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:3rem;color:var(--fb-blue-light);margin-bottom:28px;
-  animation:emptyIconFloat 3s ease-in-out infinite;
-  box-shadow:0 0 60px rgba(24,119,242,.25);
-}
-.empty-state-title{
-  font-size:1.5rem;font-weight:900;color:var(--fb-text);
-  margin-bottom:12px;letter-spacing:-.4px;line-height:1.25;
-  max-width:520px;
-}
-.empty-state-desc{
-  font-size:.95rem;color:var(--fb-text-secondary);
-  line-height:1.6;max-width:440px;margin-bottom:28px;
-}
-.empty-state-actions{
-  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
-}
-.empty-state-btn{
-  display:inline-flex;align-items:center;gap:9px;
-  border:none;padding:13px 26px;border-radius:10px;
-  font-family:inherit;font-size:.9rem;font-weight:800;cursor:pointer;
-  transition:all .25s cubic-bezier(.4,0,.2,1);
-}
-.empty-state-btn.primary{
-  background:var(--grad-blue);color:#fff;
-  box-shadow:0 5px 18px rgba(24,119,242,.45);
-}
-.empty-state-btn.primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(24,119,242,.65);
-  background:var(--fb-blue-hover);
-}
-.empty-state-btn.secondary{
-  background:var(--fb-elevated);color:var(--fb-text);
-  border:1px solid var(--fb-border);
-}
-.empty-state-btn.secondary:hover{
-  background:var(--fb-hover);transform:translateY(-2px);
-}
-.empty-state-btn:active{transform:translateY(0) scale(.97)}
-.empty-state-note{
-  margin-top:40px;padding:16px 22px;border-radius:12px;
-  background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);
-  display:inline-flex;align-items:center;gap:11px;
-  font-size:.82rem;color:var(--fb-orange);font-weight:700;
-  max-width:460px;text-align:left;
-}
-.empty-state-note i{font-size:1.05rem;flex-shrink:0}
-.empty-filter-result{
-  grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--fb-text-secondary);
-}
-.empty-filter-result i{
-  font-size:2.5rem;opacity:.4;margin-bottom:16px;display:block;
-}
-.empty-filter-result h4{
-  font-weight:800;color:var(--fb-text);margin-bottom:6px;
-}
-.empty-filter-result p{font-size:.85rem}
-
 /* ============ HISTORY PANEL ============ */
 .history-panel{
   position:fixed;top:0;right:0;bottom:0;width:100%;max-width:490px;
@@ -453,11 +392,6 @@ body{
   padding:11px 6px;text-align:center;transition:all var(--transition);
   animation:cardEnter .5s cubic-bezier(.34,1.2,.64,1) backwards;
 }
-.summary-card:nth-child(1){animation-delay:.05s}
-.summary-card:nth-child(2){animation-delay:.1s}
-.summary-card:nth-child(3){animation-delay:.15s}
-.summary-card:nth-child(4){animation-delay:.2s}
-.summary-card:hover{transform:translateY(-3px);border-color:var(--fb-blue);box-shadow:0 5px 16px rgba(24,119,242,.25)}
 .summary-card .num{font-size:1.05rem;font-weight:900;line-height:1;color:var(--fb-gold)}
 .summary-card .num.green{color:var(--fb-green)}
 .summary-card .num.orange{color:var(--fb-orange)}
@@ -542,6 +476,7 @@ body{
 }
 .status-claimed{background:rgba(49,162,76,.18);color:var(--fb-green)}
 .status-pending{background:rgba(245,158,11,.18);color:var(--fb-orange)}
+.status-phase1{background:rgba(24,119,242,.18);color:var(--fb-blue-light)}
 .status-cooldown{background:rgba(107,114,128,.22);color:var(--gray)}
 .status-blocked{background:rgba(168,85,247,.18);color:var(--fb-purple)}
 .status-withdraw{background:rgba(6,182,212,.18);color:var(--fb-cyan)}
@@ -551,6 +486,9 @@ body{
   display:inline-flex;align-items:center;gap:6px;
   font-family:'SFMono-Regular',Consolas,'Courier New',monospace;
   background:rgba(245,158,11,.1);padding:5px 9px;border-radius:8px;
+}
+.pending-timer.phase1{
+  color:var(--fb-blue-light);background:rgba(24,119,242,.1);
 }
 .pending-timer i{animation:hourglassSpin 3s ease-in-out infinite}
 .history-backdrop{
@@ -736,16 +674,6 @@ body{
   .fb-logo-text{font-size:.95rem}
   .fb-logo-text small{font-size:.62rem}
   .wallet-text .amount{font-size:1.45rem}
-  .empty-state-title{font-size:1.2rem}
-  .empty-state-icon{width:90px;height:90px;font-size:2.4rem}
-  .empty-state-actions{flex-direction:column;width:100%;max-width:320px}
-  .empty-state-btn{width:100%;justify-content:center}
-}
-@media (max-width:380px){
-  .fb-logo-mark{width:36px;height:36px;font-size:23px}
-  .fb-logo-text{font-size:.88rem}
-  .fb-logo-text small{font-size:.58rem}
-  .fb-logo-text small i{display:none}
 }
 @media (hover:none){
   .video-overlay-actions{
@@ -798,16 +726,19 @@ body{
     <div class="wallet-text">
       <div class="label"><i class="fas fa-circle"></i> Saldo disponível</div>
       <div class="amount">
-        <span id="walletAmount">0.00</span><span class="currency">MT</span>
+        <span id="walletAmount">0.00</span><span class="currency">R$</span>
       </div>
       <div class="wallet-pending" id="walletPending" style="display:none;">
         <i class="fas fa-hourglass-half"></i>
-        <span id="pendingAmount">0.00</span> MT pendente
+        <span id="pendingAmount">0.00</span> R$ pendente
+      </div>
+      <div class="wallet-withdraw-notice" id="withdrawNotice">
+        <i class="fas fa-calendar-day"></i> Saque liberado somente no final do mês
       </div>
     </div>
   </div>
   <button class="withdraw-btn-fb" id="withdrawBtn">
-    <i class="fas fa-arrow-up-from-bracket"></i> Levantar
+    <i class="fas fa-arrow-up-from-bracket"></i> Sacar
   </button>
 </div>
 
@@ -838,7 +769,7 @@ body{
     <button class="hist-filter" data-filter="claimed"><i class="fas fa-circle-check"></i> Ganho <span class="count" id="filterClaimed">0</span></button>
     <button class="hist-filter" data-filter="pending"><i class="fas fa-hourglass-half"></i> Pendente <span class="count" id="filterPending">0</span></button>
     <button class="hist-filter" data-filter="cooldown"><i class="fas fa-lock"></i> Bloqueado <span class="count" id="filterCooldown">0</span></button>
-    <button class="hist-filter" data-filter="withdraw"><i class="fas fa-hand-holding-dollar"></i> Levantar <span class="count" id="filterWithdraw">0</span></button>
+    <button class="hist-filter" data-filter="withdraw"><i class="fas fa-hand-holding-dollar"></i> Sacar <span class="count" id="filterWithdraw">0</span></button>
   </div>
   <div class="history-body" id="historyBody"></div>
 </aside>
@@ -846,7 +777,7 @@ body{
 <div class="modal-overlay" id="withdrawModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2><span class="icon-circle"><i class="fas fa-hand-holding-dollar"></i></span> Levantamento</h2>
+      <h2><span class="icon-circle"><i class="fas fa-hand-holding-dollar"></i></span> Saque</h2>
       <button class="modal-close" id="modalClose" aria-label="Fechar"><i class="fas fa-xmark"></i></button>
     </div>
     <form id="withdrawForm" novalidate>
@@ -869,16 +800,16 @@ body{
         <input type="date" id="birthDate" required />
       </div>
       <div class="form-group">
-        <label>Valor do Levantamento</label>
+        <label>Valor do Saque</label>
         <div class="withdraw-amount-box">
           <i class="fas fa-coins"></i>
           <span id="withdrawAmountDisplay">0.00</span>
-          <span class="currency">MT</span>
+          <span class="currency">R$</span>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-cancel" id="modalCancel">Cancelar</button>
-        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Levantar</button>
+        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Sacar</button>
       </div>
     </form>
   </div>
@@ -906,45 +837,48 @@ body{
 'use strict';
 
 /* ============ CONFIG ============ */
-const REWARD_AMOUNT = 0.05;
-const MIN_WITHDRAW = 10.00;
+const REWARD_AMOUNT = 0.02;
+const MIN_WITHDRAW = 1.00;
 const MIN_AGE = 18;
-const CLAIM_DELAY = 3600 * 1000;
-const COOLDOWN_DELAY = 24 * 3600 * 1000;
 const WHATSAPP_NUMBER = '258880393661';
 
+/* ===== TEMPOS DE CRÉDITO =====
+   Fase 1: 30 min "Aguardando"
+   Fase 2: 30 min "Em análise"
+   Total: 60 min até creditar
+*/
+const WAIT_PHASE_1 = 30 * 60 * 1000;
+const WAIT_PHASE_2 = 30 * 60 * 1000;
+const CLAIM_DELAY = WAIT_PHASE_1 + WAIT_PHASE_2;
+
+const WITHDRAW_ONLY_LAST_DAY = true;
+
 /* ============================================
-   MODO SEM TAREFAS
-   Mude para false quando quiser ativar as tarefas.
+   2 BANNERS — cada um com o seu próprio link
+   🔗 SUBSTITUA OS LINKS ABAIXO PELOS SEUS
    ============================================ */
-const NO_TASKS_MODE = true;
-
-const TASKS_DATA = [
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 1',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1V2wqxAyJ7/' },
-  { platform:'facebook', title:'Tecnologia em alta: seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 2',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/19Vxnz41Q3/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 3',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/195e5Nyu3X/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 4',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1C2g4UyEkU/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 5',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/r/19BTLU2p7X/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 6',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1C7RAZ76ad/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 7',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1CAHZ1LPZR/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 8',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1CiiDXtvJ8/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 9',  image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/v/19J4zQJUcA/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 10', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1ER765gXz8/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 11', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/1Ert289jrP/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 12', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/19Scj8G6wb/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 13', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/19PoRt2PUX/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 14', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/r/1bN5xx4ppp/' },
-  { platform:'facebook', title:'Seguir, like, comentar, partilhar e assistir vídeo', channel:'Miller Gunther 15', image:'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png', link:'https://www.facebook.com/share/r/19ScwCRJU6/' }
+const bannerData = [
+  {
+    platform: 'facebook',
+    title: 'Seguir, like, comentar, partilhar e assistir vídeo',
+    channel: 'Miller Gunther 1',
+    image: 'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png',
+    link: 'https://shrtslug.biz/96zgt'
+  },
+  {
+    platform: 'facebook',
+    title: 'Tecnologia em alta: seguir, like, comentar, partilhar e assistir vídeo',
+    channel: 'Miller Gunther 2',
+    image: 'https://i.supaimg.com/31caa345-0fb5-4fea-8558-144aeec4da1f/1de97178-e8b5-4794-ad6b-065aa37739b4.png',
+    link: 'https://shrtslug.biz/96wXt'
+  }
 ];
-
-/* Array efetivo — vazio se NO_TASKS_MODE estiver ativo */
-const bannerData = NO_TASKS_MODE ? [] : TASKS_DATA;
 
 /* ============ STORAGE ============ */
 const STORAGE_WALLET='mg_wallet_balance';
 const STORAGE_HISTORY='mg_claim_history';
 const STORAGE_SEEN='mg_bell_seen';
-const STORAGE_COOLDOWNS='mg_banner_cooldowns';
+const STORAGE_DAILY='mg_banner_daily';
 
 function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -961,38 +895,27 @@ function esc(s){
   return String(s==null?'':s).replace(/[&<>"']/g,c=>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+function startOfToday(){
+  const d=new Date();
+  d.setHours(0,0,0,0);
+  return d.getTime();
+}
+function getDailyMap(){return safeJSON(STORAGE_DAILY,{})}
+function saveDailyMap(m){safeSet(STORAGE_DAILY,JSON.stringify(m))}
+function getDailyGain(idx){
+  const m=getDailyMap();
+  const ts=m['b'+idx]||0;
+  return ts>=startOfToday()?ts:0;
+}
+function markDailyGain(idx){
+  const m=getDailyMap();
+  m['b'+idx]=Date.now();
+  saveDailyMap(m);
+}
 
-/* ============ STATE ============ */
-let balance=parseFloat(safeGet(STORAGE_WALLET))||0;
-if(!isFinite(balance)||balance<0)balance=0;
-let lastBalance=balance;
-let currentFilter='all';
-let toastTimer=null;
-let lastPendingCheck=0;
-
-function saveBalance(){safeSet(STORAGE_WALLET,balance.toString())}
 function getHistory(){return safeJSON(STORAGE_HISTORY,{})}
 function saveHistory(h){safeSet(STORAGE_HISTORY,JSON.stringify(h))}
-function getCooldowns(){return safeJSON(STORAGE_COOLDOWNS,{})}
-function saveCooldowns(c){safeSet(STORAGE_COOLDOWNS,JSON.stringify(c))}
 
-function getCooldownRemaining(idx){
-  const cd=getCooldowns();
-  const last=cd['b'+idx]||0;
-  const rem=COOLDOWN_DELAY-(Date.now()-last);
-  return rem>0?rem:0;
-}
-function markBannerClicked(idx){
-  const cd=getCooldowns();cd['b'+idx]=Date.now();saveCooldowns(cd);
-}
-function alreadyLoggedSinceCooldown(idx){
-  const h=getHistory();const cd=getCooldowns();
-  const lastClick=cd['b'+idx]||0;
-  return Object.keys(h).some(k=>{
-    const it=h[k];
-    return it.type==='cooldown'&&it.bannerIndex===idx&&(it.createdAt||0)>=lastClick;
-  });
-}
 function logActivity(opts){
   const h=getHistory();const now=Date.now();
   const key='act_'+opts.type+'_'+now+'_'+Math.random().toString(36).slice(2,7);
@@ -1011,6 +934,27 @@ function logActivity(opts){
   saveHistory(h);updateBellBadge();return key;
 }
 
+/* ============ REGRA DE SAQUE (FINAL DO MÊS) ============ */
+function isLastDayOfMonth(){
+  const today=new Date();
+  const tomorrow=new Date(today);
+  tomorrow.setDate(today.getDate()+1);
+  return tomorrow.getMonth()!==today.getMonth();
+}
+function daysUntilWithdrawOpen(){
+  const today=new Date();
+  const lastDay=new Date(today.getFullYear(),today.getMonth()+1,0);
+  lastDay.setHours(0,0,0,0);
+  const diff=Math.ceil((lastDay-today)/(1000*60*60*24));
+  return diff<0?0:diff;
+}
+function withdrawWindowLabel(){
+  if(!WITHDRAW_ONLY_LAST_DAY)return 'Disponível';
+  if(isLastDayOfMonth())return 'LIBERADO HOJE!';
+  const dias=daysUntilWithdrawOpen();
+  return 'Libera em '+dias+' dia'+(dias!==1?'s':'')+' (final do mês)';
+}
+
 /* ============ DOM ============ */
 const overlay=document.getElementById('loading-overlay');
 const videoGrid=document.getElementById('videoGrid');
@@ -1027,22 +971,23 @@ const walletAmountEl=document.getElementById('walletAmount');
 const walletPendingEl=document.getElementById('walletPending');
 const pendingAmountEl=document.getElementById('pendingAmount');
 const withdrawAmountDisplay=document.getElementById('withdrawAmountDisplay');
+const withdrawBtn=document.getElementById('withdrawBtn');
+const withdrawNotice=document.getElementById('withdrawNotice');
 
 /* ============ TOAST ============ */
 function showToast(html,type){
   type=type||'';
   const existing=document.querySelector('.mg-toast');
   if(existing)existing.remove();
-  if(toastTimer)clearTimeout(toastTimer);
   const t=document.createElement('div');
   t.className='mg-toast '+type;
   t.innerHTML=html;
   document.body.appendChild(t);
   requestAnimationFrame(()=>t.classList.add('show'));
-  toastTimer=setTimeout(()=>{
+  setTimeout(()=>{
     t.classList.remove('show');
     setTimeout(()=>{if(t.parentNode)t.remove()},400);
-  },3200);
+  },3400);
 }
 
 /* ============ RIPPLE ============ */
@@ -1085,6 +1030,10 @@ function formatCountdown(ms){
          String(Math.floor((s%3600)/60)).padStart(2,'0')+':'+
          String(s%60).padStart(2,'0');
 }
+function msUntilTomorrow(){
+  const t=new Date();t.setHours(24,0,0,0);
+  return t.getTime()-Date.now();
+}
 function formatShortCountdown(ms){
   if(ms<=0)return 'Disponível';
   const s=Math.floor(ms/1000);
@@ -1095,6 +1044,13 @@ function formatShortCountdown(ms){
 }
 
 /* ============ WALLET ============ */
+let balance=parseFloat(safeGet(STORAGE_WALLET))||0;
+if(!isFinite(balance)||balance<0)balance=0;
+let lastBalance=balance;
+let currentFilter='all';
+let lastPendingCheck=0;
+
+function saveBalance(){safeSet(STORAGE_WALLET,balance.toString())}
 function getPendingTotal(){
   const h=getHistory();let total=0;
   Object.keys(h).forEach(k=>{if(h[k].status==='pending')total+=h[k].amount||0});
@@ -1115,6 +1071,33 @@ function updateWalletUI(animate){
   }else{
     walletPendingEl.style.display='none';
   }
+  updateWithdrawButton();
+}
+function updateWithdrawButton(){
+  const lastDay=isLastDayOfMonth();
+  const minOk=balance>=MIN_WITHDRAW;
+  if(WITHDRAW_ONLY_LAST_DAY && !lastDay){
+    withdrawBtn.disabled=true;
+    withdrawBtn.innerHTML='<i class="fas fa-lock"></i> Bloqueado';
+    withdrawNotice.innerHTML='<i class="fas fa-calendar-day"></i> '+withdrawWindowLabel();
+    withdrawNotice.style.color='var(--fb-orange)';
+    withdrawNotice.style.borderColor='rgba(245,158,11,.25)';
+    withdrawNotice.style.background='rgba(245,158,11,.1)';
+  }else if(!minOk){
+    withdrawBtn.disabled=true;
+    withdrawBtn.innerHTML='<i class="fas fa-lock"></i> Mín. R$ '+MIN_WITHDRAW.toFixed(2);
+    withdrawNotice.innerHTML='<i class="fas fa-circle-info"></i> Mínimo R$ '+MIN_WITHDRAW.toFixed(2)+' para sacar';
+    withdrawNotice.style.color='var(--fb-blue-light)';
+    withdrawNotice.style.borderColor='rgba(24,119,242,.25)';
+    withdrawNotice.style.background='rgba(24,119,242,.1)';
+  }else{
+    withdrawBtn.disabled=false;
+    withdrawBtn.innerHTML='<i class="fas fa-arrow-up-from-bracket"></i> Sacar';
+    withdrawNotice.innerHTML='<i class="fas fa-circle-check"></i> Saque liberado hoje!';
+    withdrawNotice.style.color='var(--fb-green)';
+    withdrawNotice.style.borderColor='rgba(49,162,76,.25)';
+    withdrawNotice.style.background='rgba(49,162,76,.1)';
+  }
 }
 function processPendingRewards(silent){
   const h=getHistory();const now=Date.now();
@@ -1129,7 +1112,7 @@ function processPendingRewards(silent){
   });
   if(changed){
     saveBalance();saveHistory(h);updateWalletUI(true);updateBellBadge();
-    if(!silent&&credited>0)showToast('<i class="fas fa-circle-check"></i> +'+credited.toFixed(2)+' MT creditado!','success');
+    if(!silent&&credited>0)showToast('<i class="fas fa-circle-check"></i> +R$ '+credited.toFixed(2)+' creditado!','success');
   }
   return changed;
 }
@@ -1148,10 +1131,11 @@ function updateBellBadge(){
 /* ============ HISTORY RENDER ============ */
 const TYPE_STYLE={
   claimed:{cls:'status-claimed',label:'Recebido',icon:'fa-circle-check',color:'green'},
-  pending:{cls:'status-pending',label:'Pendente',icon:'fa-hourglass-half',color:'orange'},
+  pending:{cls:'status-pending',label:'Em análise',icon:'fa-hourglass-half',color:'orange'},
+  phase1:{cls:'status-phase1',label:'Aguardando',icon:'fa-clock',color:'cyan'},
   cooldown:{cls:'status-cooldown',label:'Bloqueado',icon:'fa-lock',color:'gray'},
   blocked:{cls:'status-blocked',label:'Bloqueado',icon:'fa-ban',color:'purple'},
-  withdraw:{cls:'status-withdraw',label:'Levantado',icon:'fa-hand-holding-dollar',color:'cyan'},
+  withdraw:{cls:'status-withdraw',label:'Sacado',icon:'fa-hand-holding-dollar',color:'cyan'},
   info:{cls:'status-info',label:'Info',icon:'fa-circle-info',color:'cyan'}
 };
 
@@ -1168,8 +1152,9 @@ function renderHistory(){
   let pendingMT=0,blockedCount=0,totalEarned=0;
   items.forEach(it=>{
     const t=it.type||'info';
-    if(counts[t]!==undefined)counts[t]++;
-    if(t==='pending')pendingMT+=it.amount||0;
+    if(t==='pending'||t==='phase1')counts.pending++;
+    else if(counts[t]!==undefined)counts[t]++;
+    if(t==='pending'||t==='phase1')pendingMT+=it.amount||0;
     if(t==='claimed')totalEarned+=it.amount||0;
     if(t==='cooldown'||t==='blocked')blockedCount++;
   });
@@ -1185,7 +1170,7 @@ function renderHistory(){
 
   let filtered=items;
   if(currentFilter==='claimed')filtered=items.filter(i=>i.type==='claimed');
-  else if(currentFilter==='pending')filtered=items.filter(i=>i.type==='pending');
+  else if(currentFilter==='pending')filtered=items.filter(i=>i.type==='pending'||i.type==='phase1');
   else if(currentFilter==='cooldown')filtered=items.filter(i=>i.type==='cooldown'||i.type==='blocked');
   else if(currentFilter==='withdraw')filtered=items.filter(i=>i.type==='withdraw');
 
@@ -1201,22 +1186,33 @@ function renderHistory(){
 
   historyBody.innerHTML=filtered.map((it,idx)=>{
     const type=it.type||'info';
-    const style=TYPE_STYLE[type]||TYPE_STYLE.info;
+    const isPending=(type==='pending'||type==='phase1');
+
+    // Calcular fase atual em tempo real
+    let style;
+    if(type==='pending'){
+      const elapsed=Date.now()-(it.createdAt||0);
+      // Se ainda não passou 30 min, mostrar como fase1
+      if(elapsed<WAIT_PHASE_1)style=TYPE_STYLE.phase1;
+      else style=TYPE_STYLE.pending;
+    }else{
+      style=TYPE_STYLE[type]||TYPE_STYLE.info;
+    }
+
     const ts=it.claimedAt||it.createdAt||Date.now();
     const fmt=formatFullDate(ts);
-    const isPending=(type==='pending');
 
     let title=it.title||'';
-    if(type==='withdraw')title='Levantamento: '+(it.amount||0).toFixed(2)+' MT';
+    if(type==='withdraw')title='Saque: R$ '+(it.amount||0).toFixed(2);
     if(type==='cooldown'&&!title)title='Banner em cooldown';
     if(type==='blocked'&&!title)title='Ação bloqueada';
     if(!title)title='Atividade';
 
     let valueHtml='';
-    if(type==='claimed'||type==='pending'){
-      valueHtml='<span class="value '+style.color+'">+'+(it.amount||0).toFixed(2)+' MT</span>';
+    if(type==='claimed'||isPending){
+      valueHtml='<span class="value '+style.color+'">+R$ '+(it.amount||0).toFixed(2)+'</span>';
     }else if(type==='withdraw'){
-      valueHtml='<span class="value cyan">-'+(it.amount||0).toFixed(2)+' MT</span>';
+      valueHtml='<span class="value cyan">-R$ '+(it.amount||0).toFixed(2)+'</span>';
     }else if(type==='cooldown'||type==='blocked'){
       valueHtml='<span class="value gray">Bloqueado</span>';
     }else{
@@ -1225,9 +1221,17 @@ function renderHistory(){
 
     let countdownHtml='';
     if(isPending){
-      const rem=Math.max(0,CLAIM_DELAY-(Date.now()-(it.createdAt||0)));
-      countdownHtml='<div class="pending-timer" data-created="'+it.createdAt+'">'+
-        '<i class="fas fa-clock"></i> Credita em <span class="timer-text">'+formatCountdown(rem)+'</span></div>';
+      const elapsed=Date.now()-(it.createdAt||0);
+      const inPhase2=elapsed>=WAIT_PHASE_1;
+      const remaining=Math.max(0,CLAIM_DELAY-elapsed);
+      if(inPhase2){
+        countdownHtml='<div class="pending-timer" data-created="'+it.createdAt+'">'+
+          '<i class="fas fa-hourglass-half"></i> Em análise — credita em <span class="timer-text">'+formatCountdown(remaining)+'</span></div>';
+      }else{
+        const rem1=Math.max(0,WAIT_PHASE_1-elapsed);
+        countdownHtml='<div class="pending-timer phase1" data-created="'+it.createdAt+'" data-phase="1">'+
+          '<i class="fas fa-clock"></i> Aguardando — análise em <span class="timer-text">'+formatCountdown(rem1)+'</span></div>';
+      }
     }
 
     const noteHtml=it.note?
@@ -1258,25 +1262,36 @@ function renderHistory(){
 /* ============ CARDS ============ */
 function buildCardHTML(item,index){
   const h=getHistory();
-  const rem=getCooldownRemaining(index);
-  const onCooldown=rem>0;
-  let hasPending=false;
+  const dailyGain=getDailyGain(index);
+
+  let pendingItem=null;
   Object.keys(h).forEach(k=>{
     const it=h[k];
-    if(it.status==='pending'&&it.bannerIndex===index&&it.type==='pending')hasPending=true;
+    if(it.status==='pending'&&it.bannerIndex===index&&it.type==='pending'){
+      pendingItem=it;
+    }
   });
 
   let tagHtml,btnDisabled='',btnLabel='<i class="fas fa-hand-pointer"></i> Ganhar';
-  if(onCooldown){
-    tagHtml='<div class="reward-tag cooldown" data-cooldown-index="'+index+'"><i class="fas fa-clock"></i> <span class="cooldown-text">'+formatShortCountdown(rem)+'</span></div>';
+
+  if(dailyGain){
+    const reset=msUntilTomorrow();
+    tagHtml='<div class="reward-tag cooldown" data-daily-reset="1"><i class="fas fa-clock"></i> <span class="cooldown-text">'+formatShortCountdown(reset)+'</span></div>';
     btnDisabled='disabled';
-    btnLabel='<i class="fas fa-clock"></i> Aguarde';
-  }else if(hasPending){
-    tagHtml='<div class="reward-tag pending"><i class="fas fa-hourglass-half"></i> Em análise</div>';
+    btnLabel='<i class="fas fa-check"></i> Ganho hoje';
+  }else if(pendingItem){
+    const elapsed=Date.now()-(pendingItem.createdAt||0);
+    const remaining=Math.max(0,CLAIM_DELAY-elapsed);
+    const inPhase2=elapsed>=WAIT_PHASE_1;
+    if(inPhase2){
+      tagHtml='<div class="reward-tag pending"><i class="fas fa-hourglass-half"></i> Em análise '+formatShortCountdown(remaining)+'</div>';
+    }else{
+      tagHtml='<div class="reward-tag pending-phase1"><i class="fas fa-clock"></i> Aguardando '+formatShortCountdown(WAIT_PHASE_1-elapsed)+'</div>';
+    }
     btnDisabled='disabled';
     btnLabel='<i class="fas fa-hourglass-half"></i> A processar...';
   }else{
-    tagHtml='<div class="reward-tag"><i class="fas fa-coins"></i> '+REWARD_AMOUNT.toFixed(2)+' MT</div>';
+    tagHtml='<div class="reward-tag"><i class="fas fa-coins"></i> R$ '+REWARD_AMOUNT.toFixed(2)+'</div>';
   }
 
   return (
@@ -1298,45 +1313,11 @@ function buildCardHTML(item,index){
   );
 }
 
-function buildEmptyStateHTML(){
-  return (
-    '<div class="empty-state-wrap">'+
-      '<div class="empty-state-icon"><i class="fas fa-inbox"></i></div>'+
-      '<h2 class="empty-state-title">Não existem tarefas disponíveis no momento</h2>'+
-      '<p class="empty-state-desc">'+
-        'Volte mais tarde — novas recompensas são adicionadas regularmente. '+
-        'Enquanto isso, você pode verificar seu <strong style="color:var(--fb-gold)">saldo</strong> e <strong style="color:var(--fb-gold)">histórico</strong>.'+
-      '</p>'+
-      '<div class="empty-state-actions">'+
-        '<button class="empty-state-btn primary" id="refreshTasksBtn">'+
-          '<i class="fas fa-rotate-right"></i> Atualizar página'+
-        '</button>'+
-        '<button class="empty-state-btn secondary" id="openHistoryFromEmpty">'+
-          '<i class="fas fa-clock-rotate-left"></i> Ver histórico'+
-        '</button>'+
-      '</div>'+
-      '<div class="empty-state-note">'+
-        '<i class="fas fa-circle-info"></i>'+
-        '<span>As tarefas são renovadas periodicamente. Fique atento!</span>'+
-      '</div>'+
-    '</div>'
-  );
-}
-
 function renderVideos(filter){
   filter=filter||'all';
   videoGrid.innerHTML='';
-
-  /* ---- ESTADO VAZIO: sem tarefas ---- */
-  if(bannerData.length===0){
-    videoGrid.style.display='block';
-    videoGrid.innerHTML=buildEmptyStateHTML();
-    bindEmptyStateEvents();
-    return;
-  }
-
-  /* ---- GRID NORMAL ---- */
   videoGrid.style.display='grid';
+
   let visibleIndex=0;
   bannerData.forEach((item,index)=>{
     if(filter!=='all'&&item.platform!==filter)return;
@@ -1350,7 +1331,6 @@ function renderVideos(filter){
     visibleIndex++;
   });
 
-  /* Filtro sem resultados */
   if(visibleIndex===0){
     videoGrid.innerHTML=
       '<div class="empty-filter-result">'+
@@ -1362,21 +1342,6 @@ function renderVideos(filter){
   }
 
   attachCardEvents();
-}
-
-function bindEmptyStateEvents(){
-  const refreshBtn=document.getElementById('refreshTasksBtn');
-  const historyBtn=document.getElementById('openHistoryFromEmpty');
-  if(refreshBtn){
-    refreshBtn.addEventListener('click',function(){
-      location.reload();
-    });
-  }
-  if(historyBtn){
-    historyBtn.addEventListener('click',function(){
-      openHistory();
-    });
-  }
 }
 
 function refreshSingleCard(index){
@@ -1441,16 +1406,9 @@ function handleCardClick(idx,cardEl){
   if(!cardEl)return;
   const item=bannerData[idx];if(!item)return;
 
-  const rem=getCooldownRemaining(idx);
-  if(rem>0){
+  if(getDailyGain(idx)){
     openBannerLink(item);
-    if(!alreadyLoggedSinceCooldown(idx)){
-      logActivity({type:'cooldown',title:item.title,channel:item.channel,
-        bannerIndex:idx,platform:item.platform,
-        note:'Disponível em '+formatShortCountdown(rem)});
-    }
-    if(historyPanel.classList.contains('open'))renderHistory();
-    showToast('<i class="fas fa-lock"></i> Bloqueado. Disponível em '+formatShortCountdown(rem),'info');
+    showToast('<i class="fas fa-clock"></i> Já ganhou este banner hoje. Volte amanhã!','info');
     return;
   }
 
@@ -1462,12 +1420,7 @@ function handleCardClick(idx,cardEl){
   });
   if(hasPending){
     openBannerLink(item);
-    if(!alreadyLoggedSinceCooldown(idx)){
-      logActivity({type:'cooldown',title:item.title,channel:item.channel,
-        bannerIndex:idx,platform:item.platform,note:'Recompensa em análise (aguarde 1h)'});
-    }
-    if(historyPanel.classList.contains('open'))renderHistory();
-    showToast('<i class="fas fa-hourglass-half"></i> Recompensa em análise. Aguarde 1h.','pending');
+    showToast('<i class="fas fa-hourglass-half"></i> Recompensa a caminho. Aguarde o tempo terminar.','pending');
     return;
   }
 
@@ -1485,15 +1438,16 @@ function handleCardClick(idx,cardEl){
     source:item.platform,platform:item.platform,
     title:item.title,channel:item.channel,bannerIndex:idx,
     createdAt:now,claimedAt:null,
-    note:'Ganho registado • credita em 1h'
+    note:'Ganho registado • credita em 1 hora'
   };
   saveHistory(fresh);
-  markBannerClicked(idx);
+  markDailyGain(idx);
   updateWalletUI();
   updateBellBadge();
   refreshSingleCard(idx);
   if(historyPanel.classList.contains('open'))renderHistory();
-  showToast('<i class="fas fa-circle-check"></i> +'+REWARD_AMOUNT.toFixed(2)+' MT! Creditado em 1h.','success');
+
+  showToast('<i class="fas fa-circle-check"></i> +R$ '+REWARD_AMOUNT.toFixed(2)+'! Aguarde 1 hora para receber.','success');
 }
 
 /* ============ CHIPS ============ */
@@ -1533,20 +1487,60 @@ document.querySelectorAll('.hist-filter').forEach(btn=>{
   });
 });
 
-/* ============ PROVÍNCIAS ============ */
+/* ==================================================
+   PROVÍNCIAS / DISTRITOS — MOÇAMBIQUE (11 províncias)
+   ================================================== */
 const provinceDistricts={
-  'Maputo Cidade':['KaMpfumo','Nlhamankulu','KaMaxakeni','KaMubukwana','KaTembe','KaNyaka'],
-  'Maputo Província':['Matola','Boane','Magude','Manhiça','Marracuene','Moamba','Namaacha'],
-  'Gaza':['Xai-Xai','Bilene','Chibuto','Chicualacuala','Chigubo','Chókwè','Guijá','Mabalane','Manjacaze','Massangena','Massingir'],
-  'Inhambane':['Inhambane','Funhalouro','Govuro','Homoíne','Inharrime','Inhassoro','Jangamo','Mabote','Massinga','Morrumbene','Panda','Vilankulo','Zavala'],
-  'Manica':['Chimoio','Báruè','Gondola','Guro','Machaze','Macossa','Manica','Mossurize','Sussundenga','Tambara'],
-  'Sofala':['Beira','Buzi','Caia','Chemba','Cheringoma','Chibabava','Dondo','Gorongosa','Marromeu','Muanza','Nhamatanda'],
-  'Tete':['Tete','Angónia','Cahora-Bassa','Changara','Chifunde','Chiuta','Macanga','Magoé','Marávia','Moatize','Mutarara','Tsangano','Zumbo'],
-  'Zambézia':['Quelimane','Alto Molócuè','Chinde','Gile','Gurúè','Ile','Inhassunge','Lugela','Maganja da Costa','Milange','Mocuba','Mocubela','Molumbo','Mopeia','Morrumbala','Mulevala','Namacurra','Namarroi','Nicoadala','Pebane'],
-  'Nampula':['Nampula','Angoche','Eráti','Ilha de Moçambique','Lalaua','Larde','Liúpo','Malema','Meconta','Mecubúri','Memba','Mogincual','Mogovolas','Moma','Monapo','Mossuril','Muecate','Murrupula','Nacala-a-Velha','Nacala Porto','Nacarôa','Rapale','Ribaué'],
-  'Cabo Delgado':['Pemba','Ancuabe','Balama','Chiúre','Ibo','Macomia','Mecúfi','Meluco','Mocímboa da Praia','Montepuez','Mueda','Muidumbe','Namuno','Nangade','Palma','Quissanga'],
-  'Niassa':['Lichinga','Cuamba','Lago','Majune','Mandimba','Marrupa','Maúa','Mavago','Mecanhelas','Mecula','Metarica','Muembe','Nipepe','Sanga']
+  'Cabo Delgado': [
+    'Ancuabe','Balama','Chiúre','Cidade de Pemba','Ibo','Macomia','Mecúfi','Meluco',
+    'Metuge','Mocímboa da Praia','Montepuez','Mueda','Muidumbe','Namuno','Nangade',
+    'Palma','Quissanga'
+  ],
+  'Gaza': [
+    'Bilene','Chibuto','Chicualacuala','Chigubo','Chókwè','Chongoene','Guijá','Limpopo',
+    'Mabalane','Manjacaze','Mapai','Massangena','Massingir','Xai-Xai','Cidade de Xai-Xai'
+  ],
+  'Inhambane': [
+    'Cidade de Inhambane','Funhalouro','Govuro','Homoíne','Inharrime','Inhassoro',
+    'Jangamo','Mabote','Massinga','Maxixe','Morrumbene','Panda','Vilankulo','Zavala'
+  ],
+  'Manica': [
+    'Báruè','Chimoio','Cidade de Chimoio','Gondola','Guro','Macate','Machaze',
+    'Macossa','Manica','Mossurize','Sussundenga','Tambara','Vanduzi'
+  ],
+  'Maputo Província': [
+    'Boane','Magude','Manhiça','Marracuene','Matola','Cidade da Matola','Matutuíne',
+    'Moamba','Namaacha'
+  ],
+  'Maputo Cidade': [
+    'KaMpfumo','KaMaxaquene','KaMubukwana','KaTembe','KaNyaka','Nlhamankulu','KaMavota'
+  ],
+  'Nampula': [
+    'Angoche','Cidade de Nampula','Eráti','Ilha de Moçambique','Lalaua','Larde','Liúpo',
+    'Malema','Meconta','Mecubúri','Memba','Mogincual','Mogovolas','Moma','Monapo',
+    'Mossuril','Muecate','Murrupula','Nacala-a-Velha','Nacala-Porto','Nacarôa',
+    'Namialo','Rapale','Ribaue'
+  ],
+  'Niassa': [
+    'Chimbunila','Cuamba','Cidade de Lichinga','Lago','Lichinga','Majune','Mandimba',
+    'Marrupa','Maúa','Mavago','Mecanhelas','Mecula','Metarica','Muembe','Ngauma',
+    'Nipepe','Sanga'
+  ],
+  'Sofala': [
+    'Beira','Cidade da Beira','Búzi','Caia','Chemba','Cheringoma','Chibabava','Dondo',
+    'Gorongosa','Machanga','Maringué','Marromeu','Muanza','Nhamatanda'
+  ],
+  'Tete': [
+    'Angónia','Cahora-Bassa','Changara','Chifunde','Chiuta','Cidade de Tete','Dôa',
+    'Macanga','Magoé','Marávia','Marara','Moatize','Mutarara','Tete','Tsangano','Zumbo'
+  ],
+  'Zambézia': [
+    'Alto Molócue','Chinde','Cidade de Quelimane','Derre','Gilé','Gurué','Ile',
+    'Inhassunge','Luabo','Lugela','Maganja da Costa','Milange','Mocuba','Mopeia',
+    'Morrumbala','Mulevala','Namacurra','Namarroi','Nicoadala','Pebane','Quelimane'
+  ]
 };
+
 Object.keys(provinceDistricts).forEach(p=>{
   const o=document.createElement('option');o.value=p;o.textContent=p;
   provinceSelect.appendChild(o);
@@ -1574,12 +1568,19 @@ function closeModal(){
   districtSelect.innerHTML='<option value="">Selecione...</option>';
   provinceSelect.value='';
 }
-document.getElementById('withdrawBtn').addEventListener('click',function(){
-  if(balance<MIN_WITHDRAW){
-    logActivity({type:'blocked',title:'Tentativa de levantamento',
-      note:'Saldo insuficiente ('+balance.toFixed(2)+' MT). Mínimo '+MIN_WITHDRAW.toFixed(2)+' MT'});
+withdrawBtn.addEventListener('click',function(){
+  if(WITHDRAW_ONLY_LAST_DAY && !isLastDayOfMonth()){
+    logActivity({type:'blocked',title:'Tentativa de saque fora do prazo',
+      note:withdrawWindowLabel()});
     if(historyPanel.classList.contains('open'))renderHistory();
-    showToast('<i class="fas fa-circle-exclamation"></i> Saldo mínimo é '+MIN_WITHDRAW.toFixed(2)+' MT','error');
+    showToast('<i class="fas fa-calendar-day"></i> Saque liberado somente no final do mês!','error');
+    return;
+  }
+  if(balance<MIN_WITHDRAW){
+    logActivity({type:'blocked',title:'Tentativa de saque',
+      note:'Saldo insuficiente (R$ '+balance.toFixed(2)+'). Mínimo R$ '+MIN_WITHDRAW.toFixed(2)});
+    if(historyPanel.classList.contains('open'))renderHistory();
+    showToast('<i class="fas fa-circle-exclamation"></i> Saldo mínimo é R$ '+MIN_WITHDRAW.toFixed(2),'error');
     return;
   }
   openModal();
@@ -1588,7 +1589,6 @@ document.getElementById('modalClose').addEventListener('click',closeModal);
 document.getElementById('modalCancel').addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 
-/* Limita data de nascimento ao mínimo de idade */
 (function(){
   const bd=document.getElementById('birthDate');
   const max=new Date();
@@ -1612,22 +1612,22 @@ withdrawForm.addEventListener('submit',function(e){
   if(isNaN(birth.getTime())){showToast('<i class="fas fa-circle-exclamation"></i> Data inválida','error');return}
   const age=calcAge(birth);
   if(age<MIN_AGE){
-    logActivity({type:'blocked',title:'Levantamento bloqueado',note:'Idade insuficiente ('+age+' anos). Mínimo '+MIN_AGE});
+    logActivity({type:'blocked',title:'Saque bloqueado',note:'Idade insuficiente ('+age+' anos). Mínimo '+MIN_AGE});
     if(historyPanel.classList.contains('open'))renderHistory();
     showToast('<i class="fas fa-circle-exclamation"></i> Deve ter pelo menos '+MIN_AGE+' anos','error');
     return;
   }
 
   const amountToWithdraw=parseFloat(balance.toFixed(2));
-  const formattedDate=birth.toLocaleDateString('pt-MZ');
-  const msg='🟦 *LEVANTAMENTO MILLER MONETIZAÇÃO* 🟦\n\n'+
+  const formattedDate=birth.toLocaleDateString('pt-BR');
+  const msg='🟦 *SAQUE MILLER MONETIZAÇÃO* 🟦\n\n'+
     '👤 *Nome Facebook:* '+fbName+'\n'+
     '📍 *Província:* '+province+'\n'+
     '🏙️ *Distrito:* '+district+'\n'+
     '📅 *Data de Nascimento:* '+formattedDate+'\n'+
     '🎂 *Idade:* '+age+' anos\n'+
-    '💰 *Valor a Levantar:* '+amountToWithdraw.toFixed(2)+' MT\n\n'+
-    '✅ Pedido de levantamento enviado com sucesso!';
+    '💰 *Valor do Saque:* R$ '+amountToWithdraw.toFixed(2)+'\n\n'+
+    '✅ Pedido de saque enviado com sucesso!';
   const waUrl='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(msg);
 
   balance-=amountToWithdraw;
@@ -1635,7 +1635,7 @@ withdrawForm.addEventListener('submit',function(e){
   saveBalance();
   updateWalletUI(true);
   logActivity({type:'withdraw',amount:amountToWithdraw,
-    title:'Levantamento para '+fbName,channel:province+' / '+district,
+    title:'Saque para '+fbName,channel:province+' / '+district,
     note:'Idade: '+age+' anos • Enviado via WhatsApp'});
   if(historyPanel.classList.contains('open'))renderHistory();
 
@@ -1643,9 +1643,7 @@ withdrawForm.addEventListener('submit',function(e){
   if(!win||win.closed||typeof win.closed==='undefined')window.location.href=waUrl;
 
   closeModal();
-  showToast('<i class="fas fa-circle-check"></i> Levantamento de '+amountToWithdraw.toFixed(2)+' MT enviado!','success');
-  console.log('%c💸 Levantamento: -'+amountToWithdraw.toFixed(2)+' MT | Novo saldo: '+balance.toFixed(2)+' MT',
-    'color:#1877f2;font-weight:bold;');
+  showToast('<i class="fas fa-circle-check"></i> Saque de R$ '+amountToWithdraw.toFixed(2)+' enviado!','success');
 });
 
 /* ============ FLOAT ASSIST ============ */
@@ -1662,33 +1660,76 @@ document.addEventListener('click',function(e){
 
 /* ============ TIMERS ============ */
 setInterval(function(){
+  // Atualiza countdowns do histórico
   document.querySelectorAll('.pending-timer').forEach(el=>{
     const created=parseInt(el.getAttribute('data-created'),10);
     if(!created)return;
-    const rem=Math.max(0,CLAIM_DELAY-(Date.now()-created));
+    const elapsed=Date.now()-created;
+    const inPhase2=elapsed>=WAIT_PHASE_1;
     const txt=el.querySelector('.timer-text');
-    if(txt)txt.textContent=formatCountdown(rem);
-  });
-  document.querySelectorAll('.reward-tag.cooldown').forEach(el=>{
-    const idx=parseInt(el.getAttribute('data-cooldown-index'),10);
-    if(isNaN(idx))return;
-    const rem=getCooldownRemaining(idx);
-    const span=el.querySelector('.cooldown-text');
-    if(rem<=0){
-      refreshSingleCard(idx);
-      if(historyPanel.classList.contains('open'))renderHistory();
-    }else if(span){
-      span.textContent=formatShortCountdown(rem);
+    if(inPhase2){
+      const rem=Math.max(0,CLAIM_DELAY-elapsed);
+      if(txt)txt.textContent=formatCountdown(rem);
+      // Se ainda está marcado como fase1, remover classe
+      if(el.classList.contains('phase1'))el.classList.remove('phase1');
+    }else{
+      const rem=Math.max(0,WAIT_PHASE_1-elapsed);
+      if(txt)txt.textContent=formatCountdown(rem);
     }
   });
-  const now=Date.now();
-  if(now-lastPendingCheck>=5000){
-    lastPendingCheck=now;
+
+  // Atualiza tags nos cards em tempo real
+  document.querySelectorAll('.video-card').forEach(card=>{
+    const idx=parseInt(card.getAttribute('data-index'),10);
+    if(isNaN(idx))return;
+    const h=getHistory();
+    let pendingItem=null;
+    Object.keys(h).forEach(k=>{
+      const it=h[k];
+      if(it.status==='pending'&&it.bannerIndex===idx&&it.type==='pending'){
+        pendingItem=it;
+      }
+    });
+    if(!pendingItem)return;
+    const tag=card.querySelector('.reward-tag');
+    if(!tag)return;
+    const elapsed=Date.now()-(pendingItem.createdAt||0);
+    const inPhase2=elapsed>=WAIT_PHASE_1;
+    if(inPhase2){
+      const remaining=Math.max(0,CLAIM_DELAY-elapsed);
+      tag.className='reward-tag pending';
+      tag.style.background='';
+      tag.innerHTML='<i class="fas fa-hourglass-half"></i> Em análise '+formatShortCountdown(remaining);
+    }else{
+      const remaining=Math.max(0,WAIT_PHASE_1-elapsed);
+      tag.className='reward-tag pending-phase1';
+      tag.style.background='';
+      tag.innerHTML='<i class="fas fa-clock"></i> Aguardando '+formatShortCountdown(remaining);
+    }
+  });
+
+  // Cooldown diário
+  let precisaRefresh=false;
+  document.querySelectorAll('.reward-tag[data-daily-reset]').forEach(el=>{
+    const rem=msUntilTomorrow();
+    const span=el.querySelector('.cooldown-text');
+    if(span)span.textContent=formatShortCountdown(rem);
+    if(rem<=0)precisaRefresh=true;
+  });
+  if(precisaRefresh){
+    refreshAllCards();
+    if(historyPanel.classList.contains('open'))renderHistory();
+  }
+
+  // Verifica se algum pendente já completou 60 min
+  if(Date.now()-lastPendingCheck>=5000){
+    lastPendingCheck=Date.now();
     if(processPendingRewards(true)){
       refreshAllCards();
       if(historyPanel.classList.contains('open'))renderHistory();
     }
   }
+  updateWithdrawButton();
 },1000);
 
 document.addEventListener('visibilitychange',function(){
@@ -1697,6 +1738,7 @@ document.addEventListener('visibilitychange',function(){
       refreshAllCards();
       if(historyPanel.classList.contains('open'))renderHistory();
     }
+    updateWithdrawButton();
   }
 });
 
@@ -1716,8 +1758,7 @@ updateWalletUI();
 updateBellBadge();
 
 console.log('%c📘 Miller Monetização — Facebook Style','color:#1877f2;font-size:16px;font-weight:bold;');
-console.log('%c⚙️ Modo sem tarefas: '+(NO_TASKS_MODE?'ATIVO':'DESATIVADO'),
-  'color:'+(NO_TASKS_MODE?'#f59e0b':'#31a24c')+';font-weight:bold;');
+console.log('%c💰 R$ '+REWARD_AMOUNT.toFixed(2)+' por banner | Aguardando 30min + Análise 30min = 60min','color:#31a24c;font-weight:bold;');
 })();
 </script>
 </body>
